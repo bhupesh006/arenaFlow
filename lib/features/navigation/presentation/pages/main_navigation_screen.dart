@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:arena_flow/core/theme/app_theme.dart';
 import 'package:arena_flow/features/map_routing/presentation/pages/smart_map_page.dart';
 import 'package:arena_flow/features/queue_tracker/presentation/pages/express_queue_page.dart';
+import 'package:arena_flow/features/assistant/presentation/pages/arena_ai_assistant_page.dart';
 import 'package:arena_flow/features/coordination_hub/presentation/widgets/coordination_banner.dart';
 
 class MainNavigationScreen extends StatefulWidget {
@@ -15,9 +16,10 @@ class MainNavigationScreen extends StatefulWidget {
 class _MainNavigationScreenState extends State<MainNavigationScreen> {
   int _currentIndex = 0;
 
-  final List<Widget> _pages = [
+  final List<Widget> _pages = const [
     SmartMapPage(),
     ExpressQueuePage(),
+    ArenaAiAssistantPage(),
   ];
 
   @override
@@ -27,7 +29,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
         child: Column(
           children: [
             // Coordination Hub - Always visible banner system
-            CoordinationBanner(),
+            const CoordinationBanner(),
             Expanded(
               child: IndexedStack(
                 index: _currentIndex,
@@ -58,6 +60,14 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
               ),
               activeIcon: const Icon(Icons.fastfood),
               label: 'Express',
+            ),
+            BottomNavigationBarItem(
+              icon: Semantics(
+                label: 'AI Assistant Tab',
+                child: const Icon(Icons.smart_toy_outlined),
+              ),
+              activeIcon: const Icon(Icons.smart_toy),
+              label: 'Arena AI',
             ),
           ],
         ),
